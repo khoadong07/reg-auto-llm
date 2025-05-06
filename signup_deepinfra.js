@@ -253,14 +253,14 @@ async function withRetry(fn, retries = 3, delayMs = 2000) {
     // Click Dashboard button
     console.log('Clicking Dashboard button...');
     await withRetry(async () => {
-      await page.waitForSelector('a[href="/dash"]', { timeout: 3000 });
+      await page.waitForSelector('a[href="/dash"]', { timeout: 10000 });
       await page.click('a[href="/dash"]');
     });
 
     // Wait for dashboard page to load
     console.log('Waiting for Dashboard page to load...');
     await withRetry(async () => {
-      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 });
+      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 10000 });
       if (!page.url().includes('/dash')) {
         throw new Error('Failed to navigate to Dashboard');
       }
