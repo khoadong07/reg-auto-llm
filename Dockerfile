@@ -1,7 +1,7 @@
-# Sử dụng image Node.js chính thức, phiên bản LTS
-FROM node:18
+# Use official Node.js LTS image as base
+FROM node:23.10.0
 
-# Cài đặt các thư viện hệ thống cần thiết cho Puppeteer
+# Install system dependencies required for Puppeteer
 RUN apt-get update && apt-get install -y \
     libnss3 \
     libatk1.0-0 \
@@ -27,17 +27,17 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-# Thiết lập thư mục làm việc
+# Set working directory inside the container
 WORKDIR /app
 
-# Sao chép package.json và package-lock.json (nếu có)
+# Copy package.json and package-lock.json (if exists)
 COPY package*.json ./
 
-# Cài đặt dependencies
+# Install Node.js dependencies
 RUN npm install
 
-# Sao chép toàn bộ mã nguồn
+# Copy all source code
 COPY . .
 
-# Lệnh chạy ứng dụng
+# Command to start the application
 CMD ["npm", "start"]
