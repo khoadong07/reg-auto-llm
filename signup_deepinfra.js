@@ -253,7 +253,7 @@ async function withRetry(fn, retries = 3, delayMs = 2000) {
     // Click Dashboard button
     console.log('Clicking Dashboard button...');
     await withRetry(async () => {
-      await page.waitForSelector('a[href="/dash"]', { timeout: 10000 });
+      await page.waitForSelector('a[href="/dash"]', { timeout: 15000 });
       await page.click('a[href="/dash"]');
     });
 
